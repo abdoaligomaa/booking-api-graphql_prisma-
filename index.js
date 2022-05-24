@@ -6,17 +6,17 @@ const {GraphQLObjectType,GraphQLSchema,GraphQLID,GraphQLString}=require('graphql
 const port=8080
 const app=express()
 
-const QueryRoot = new graphql.GraphQLObjectType({
+const QueryRoot = new GraphQLObjectType({
   name: 'Query',
   fields: () => ({
     hello: {
-      type: graphql.GraphQLString,
+      type: GraphQLString,
       resolve: () => "Hello world!"
     }
   })
 })
     
-const schema = new graphql.GraphQLSchema({ query: QueryRoot })
+const schema = new GraphQLSchema({ query: QueryRoot })
 
 app.use('/graphql',graphqlHTTP({
     schema,
