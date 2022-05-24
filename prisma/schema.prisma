@@ -16,4 +16,18 @@ model Event {
   description String
   prise Float 
   date DateTime @default(now())
+  created Int
+  createdUser User @relation(fields: [created],references: [id])
+  // userBooked User[] @relation(references: [id])
+
+  
+}
+
+ model User {
+  id Int @id @default(autoincrement())
+  name String 
+  email String
+  password String 
+  eventsCreated Event[]
+  // bookedEvents Event[]
 }
