@@ -18,7 +18,7 @@ model Event {
   date DateTime @default(now())
   created Int
   createdUser User @relation(fields: [created],references: [id])
-  // userBooked User[] @relation(references: [id])
+  userBooked bookEvent[] 
 
   
 }
@@ -29,5 +29,12 @@ model Event {
   email String
   password String 
   eventsCreated Event[]
-  // bookedEvents Event[]
+  bookedEvents bookEvent[]
+}
+model bookEvent {
+  userId Int
+  eventId Int 
+  user User @relation(fields: [userId],references: [id])
+  event Event @relation(fields: [eventId],references: [id])
+  @@id([userId,eventId])
 }
