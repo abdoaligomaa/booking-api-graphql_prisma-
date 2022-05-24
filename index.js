@@ -1,5 +1,6 @@
 const express=require('express')
 const {graphqlHTTP}=require('express-graphql')
+const {GraphQLObjectType,GraphQLSchema,GraphQLID,GraphQLString}=require('graphql')
 
 
 const port=8080
