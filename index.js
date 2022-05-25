@@ -14,30 +14,41 @@ const UserType=new GraphQLObjectType({
     name:'user',
     description: 'this is user defintion',
     fields:()=>({
-        id:{type:GraphQLNonNull(GraphQLInt)},
-        name:{type:GraphQLNonNull(GraphQLString)},
-        email:{type:GraphQLNonNull(GraphQLString)},
-        password:{type:GraphQLNonNull(GraphQLString)},
+        id:{type:new GraphQLNonNull(GraphQLInt)},
+        name:{type:new GraphQLNonNull(GraphQLString)},
+        email:{type:new GraphQLNonNull(GraphQLString)},
+        password:{type:new GraphQLNonNull(GraphQLString)},
     })
 })
 const EventType=new GraphQLObjectType({
     name:'Event',
     description: 'this is event defintion',
     fields:()=>({
-        id:{type:GraphQLNonNull(GraphQLInt)},
-        title:{type:GraphQLNonNull(GraphQLString)},
-        description:{type:GraphQLNonNull(GraphQLString)},
-        price:{type:GraphQLNonNull(GraphQLInt)},
-        date:{type:GraphQLNonNull(GraphQLString)},
+        id:{type:new GraphQLNonNull(GraphQLInt)},
+        title:{type:new GraphQLNonNull(GraphQLString)},
+        description:{type:new GraphQLNonNull(GraphQLString)},
+        price:{type:new GraphQLNonNull(GraphQLInt)},
+        date:{type:new GraphQLNonNull(GraphQLString)},
     })
 })
 const QueryRoot = new GraphQLObjectType({
-  name: 'Query',
+  name: 'rootQuery',
   fields: () => ({
     hello: {
       type: GraphQLString,
       resolve: () => "Hello world!"
-    }
+    },
+    users:{
+        type:new GraphQLList(UserType),
+        resolve:()=>{
+            return ['userOne ','userTwo','userThree']
+        }
+    },
+    envets:{
+        type:new GraphQLList(EventType),
+        resolve:()=>{
+            return ['eventOne','eventTwo','eventThree']
+        }}
   })
 })
     
