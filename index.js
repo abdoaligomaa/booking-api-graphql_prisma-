@@ -1,6 +1,6 @@
 const express=require('express')
 const {graphqlHTTP}=require('express-graphql')
-const {GraphQLObjectType,GraphQLSchema,GraphQLID,GraphQLString,GraphQLBoolean,GraphQLNonNull,GraphQLList, GraphQLInt}=require('graphql')
+const {GraphQLObjectType,GraphQLSchema,GraphQLID,GraphQLString,GraphQLBoolean,GraphQLNonNull,GraphQLList, GraphQLInt,}=require('graphql')
 
 
 
@@ -10,17 +10,27 @@ const app=express()
 const {PrismaClient}=require('@prisma/client')
 const prisma=new PrismaClient()
 
-const userType=new GraphQLObjectType({
+const UserType=new GraphQLObjectType({
     name:'user',
     description: 'this is user defintion',
     fields:()=>({
         id:{type:GraphQLNonNull(GraphQLInt)},
         name:{type:GraphQLNonNull(GraphQLString)},
-        email:{type:GraphQLNonNull(GraphQLInt)},
-        password:{type:GraphQLNonNull(GraphQLInt)},
+        email:{type:GraphQLNonNull(GraphQLString)},
+        password:{type:GraphQLNonNull(GraphQLString)},
     })
 })
-
+const EventType=new GraphQLObjectType({
+    name:'Event',
+    description: 'this is event defintion',
+    fields:()=>({
+        id:{type:GraphQLNonNull(GraphQLInt)},
+        title:{type:GraphQLNonNull(GraphQLString)},
+        description:{type:GraphQLNonNull(GraphQLString)},
+        price:{type:GraphQLNonNull(GraphQLInt)},
+        date:{type:GraphQLNonNull(GraphQLString)},
+    })
+})
 const QueryRoot = new GraphQLObjectType({
   name: 'Query',
   fields: () => ({
